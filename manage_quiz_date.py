@@ -29,7 +29,7 @@ def get_new_stage(stage, right_or_wrong):
     # Takes the current stage and the information wether the answer was
     # right ("r") or wrong and returns the new stage as int.
     if right_or_wrong == "r":
-        return stage + 1
+        return int(stage) + 1
     else:
         return 0
 
