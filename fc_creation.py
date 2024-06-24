@@ -7,11 +7,11 @@ import csv
 def get_q_a_s_input():
     # Instructs the user to input a question, an answer and a set.
     general_funktions.print_overline("Please enter a question")
-    question = input()
+    question = general_funktions.multiline_input()
     general_funktions.print_overline("Please enter the answer")
-    answer = input()
+    answer = general_funktions.multiline_input()
     general_funktions.print_overline("Please enter the set")
-    set = input()
+    set = general_funktions.multiline_input()
     new_fc = [question, answer, set]
     return new_fc
 

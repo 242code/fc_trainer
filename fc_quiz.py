@@ -5,16 +5,17 @@ import manage_quiz_date
 import csv
 import random
 
-def ask_question(question, set):
+def ask_question(question, set_name):
     # Takes the fist item of an fc list and asks the user.
-    general_funktions.print_overline(f"Q:    {question} ({set})")
+    general_funktions.print_overline(f"Q:    {question} ({set_name})")
     return None
 
 def get_answer_from_user(answer):
     # Gets answer from the user and compares to given correct answer.
     # Returns "r" if the answer was correct. Else asks the user wether the
     # answer was correct. Else returns "f".
-    user_answer = input("A:    ")
+    print("A:")
+    user_answer = general_funktions.multiline_input()
     if user_answer == answer:
         print("Correct!")
         return "r"
@@ -27,9 +28,9 @@ def get_answer_from_user(answer):
     else:
         return "r"
 
-def quiz_single_fc(single_fc_list):
+def quiz_single_fc(single_fc_list, set_name):
     # Quizzes a single fc and adjusts stage and next quiz date.
-    ask_question(single_fc_list[0])
+    ask_question(single_fc_list[0], set_name)
     right_wrong = get_answer_from_user(single_fc_list[1])
     return right_wrong
 
@@ -56,19 +57,17 @@ def get_set_name():
     existing_sets_list = general_funktions.get_existing_sets()
     print("Which set do you want to get quizzed on?")
     print("The following sets exist:")
-    print(", ".join(existing_sets_list))
+    print(",\n".join(existing_sets_list))
     set_to_quiz = input()
     while set_to_quiz not in existing_sets_list:
         set_to_quiz = input("Please enter an existing set name.\n")
     return set_to_quiz
 
-def quiz_set_list(set_list):
+def quiz_set_list(set_list, set_name):
     # Takes a fc list, shuffles it and quizzes the user.
     random.shuffle(set_list)
     for index, single_fc_list in enumerate(set_list):
-        right_wrong = quiz_single_fc(single_fc_list)
-        set_list[index] = manage_quiz_date.update_fc_card(single_fc_list, 
-                                                         right_wrong)
+        quiz_single_fc(single_fc_list, set_name)
     return set_list
 
 def quiz():
@@ -77,7 +76,7 @@ def quiz():
     while True:
         set_name = get_set_name()
         set_list = get_set_list(set_name)
-        quizzed_fc_list = quiz_set_list(set_list)
+        quizzed_fc_list = quiz_set_list(set_list, set_name)
         save_quizzed_data(quizzed_fc_list, set_name)
         print("Do you want to do another set? ('n' to stop)")
         user_input = input()

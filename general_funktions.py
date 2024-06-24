@@ -12,3 +12,13 @@ def get_existing_sets():
     for num, name in enumerate(existing_sets):
         existing_sets[num] = name[:-4]
     return existing_sets
+
+def multiline_input():
+    lines = []
+    while True:
+        line = input()
+        if line:
+            lines.append(line)
+        else:
+            break
+    return "\n".join(lines)
