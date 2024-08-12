@@ -1,10 +1,10 @@
-# Contains all funktions ot modify the set quiz to only ask due fcs.
+"""Contains all funktions ot modify the set quiz to only ask due fcs."""
 
+import datetime
+import random
 import fc_quiz
 import manage_quiz_date
 import general_funktions
-import datetime
-import random
 
 def date_str_to_datetime_obj(date_str):
     # Takes a date string (%d.%m.%Y) and returns a datetime objekt.
@@ -16,8 +16,7 @@ def check_wether_fc_is_due(next_quiz_date, today_dto):
     # else returns True.
     if today_dto < next_quiz_date:
         return False
-    else:
-        return True
+    return True
 
 def quiz_due_fc_in_a_set(set_list, set_name, today_dto):
     # Takes the set list of lists and iterates over the due dates of every
@@ -43,7 +42,7 @@ def check_if_set_has_due_fc(set_list, today_dto):
             today_dto
             ):
             return True
-    return False 
+    return False
 
 def quiz_due():
     # Manages the whole due quiz.

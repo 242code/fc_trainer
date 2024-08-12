@@ -1,7 +1,6 @@
 # Contains the functions for fc quiz.
 
 import general_funktions
-import manage_quiz_date
 import csv
 import random
 

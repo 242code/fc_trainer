@@ -5,14 +5,14 @@ import datetime
 import csv
 
 def get_q_a_s_input():
-    # Instructs the user to input a question, an answer and a set.
+    # Instructs the user to input a question, an answer and an origin.
     general_funktions.print_overline("Please enter a question")
     question = general_funktions.multiline_input()
     general_funktions.print_overline("Please enter the answer")
     answer = general_funktions.multiline_input()
-    general_funktions.print_overline("Please enter the set")
-    set = general_funktions.multiline_input()
-    new_fc = [question, answer, set]
+    general_funktions.print_overline("Please enter the origin")
+    origin = general_funktions.multiline_input()
+    new_fc = [question, answer, origin]
     return new_fc
 
 def add_stage_to_fc(list):
@@ -67,5 +67,7 @@ def create_fcs():
     fc_added = []
     for fcs in fc_to_add_list:
         fc_added.append(fcs[0])
-    print(f"The following fc have been added to {set_name}")
-    print(", ".join(fc_added))
+    print(f"The following {len(fc_added)}fc have been added to {set_name}")
+    print(",\n".join(fc_added))
+    print()
+    
