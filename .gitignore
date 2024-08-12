@@ -162,3 +162,5 @@ cython_debug/
 #.idea/
 fc_sets/test2.csv
 fc_sets/python basics.csv
+fc_sets/mathe.csv
+fc_sets/infomathe.csv

@@ -1,42 +1,47 @@
-# This contains all funktions for adding flash cards (fc)
+# This contains all functions for adding flash cards (fc)
 
-import general_funktions
+
 import datetime
 import csv
+from modules import general_functions
+
 
 def get_q_a_s_input():
     # Instructs the user to input a question, an answer and an origin.
-    general_funktions.print_overline("Please enter a question")
-    question = general_funktions.multiline_input()
-    general_funktions.print_overline("Please enter the answer")
-    answer = general_funktions.multiline_input()
-    general_funktions.print_overline("Please enter the origin")
-    origin = general_funktions.multiline_input()
+    general_functions.print_overline("Please enter a question")
+    question = general_functions.multiline_input()
+    general_functions.print_overline("Please enter the answer")
+    answer = general_functions.multiline_input()
+    general_functions.print_overline("Please enter the origin")
+    origin = general_functions.multiline_input()
     new_fc = [question, answer, origin]
     return new_fc
 
-def add_stage_to_fc(list):
-    # Add the stage 0 to a new fc list ([question, answer, set])
-    list.append(0)
-    return list
 
-def add_date_to_fc(list):
+def add_stage_to_fc(lst):
+    # Add the stage 0 to a new fc list ([question, answer, set])
+    lst.append(0)
+    return lst
+
+
+def add_date_to_fc(lst):
     # Takes a new fc list ([question, answer, set, stage]) and adds the
     # date of creation as "dd.mm.yyyy" as that is the date of the next quiz.
     today_datetime = datetime.datetime.now()
     today_str = today_datetime.strftime("%d.%m.%Y")
-    list.append(today_str)
-    return list   
+    lst.append(today_str)
+    return lst   
+
 
 def get_fc_to_add():
-    # This stores multible new fc list to append them to a csv file.
+    # This stores multiple new fc list to append them to a csv file.
     list_of_new_fc = []
     while True:
         new_fc = get_q_a_s_input()
         new_fc = add_stage_to_fc(new_fc)
         new_fc = add_date_to_fc(new_fc)
         list_of_new_fc.append(new_fc)
-        general_funktions.print_overline(
+        general_functions.print_overline(
             "Do you want to add another fc? ('n' to stop)")
         answer = input()
         if answer.lower() == "n":
@@ -45,20 +50,22 @@ def get_fc_to_add():
             continue
     return list_of_new_fc
 
-def save_new_fcs(list, set):
-    set = set+".csv"
-    fc_set_file = open(f"./fc_sets/{set}", "a")
+
+def save_new_fcs(lst, set_name):
+    set_name = set_name + ".csv"
+    fc_set_file = open(f"./fc_sets/{set_name}", "a")
     fc_writer = csv.writer(fc_set_file)
-    for new_fc in list:
+    for new_fc in lst:
         fc_writer.writerow(new_fc)
     fc_set_file.close()
     return None
 
+
 def create_fcs():
     # Guides the user through set selection and creation, then saves all fc.
-    existing_sets = general_funktions.get_existing_sets()
+    existing_sets = general_functions.get_existing_sets()
     print("Which set do you want to append/create?")
-    print("The following sets allready exist:")
+    print("The following sets already exist:")
     print(", ".join(existing_sets))
     print()
     set_name = input()

@@ -1,12 +1,12 @@
 # Contains the functions for fc quiz.
 
-import general_funktions
 import csv
 import random
+from modules import general_functions
 
 def ask_question(question, set_name):
     # Takes the fist item of an fc list and asks the user.
-    general_funktions.print_overline(f"Q:    {question} ({set_name})")
+    general_functions.print_overline(f"Q:    {question} ({set_name})")
     return None
 
 def get_answer_from_user(answer):
@@ -14,12 +14,12 @@ def get_answer_from_user(answer):
     # Returns "r" if the answer was correct. Else asks the user wether the
     # answer was correct. Else returns "f".
     print("A:")
-    user_answer = general_funktions.multiline_input()
+    user_answer = general_functions.multiline_input()
     if user_answer == answer:
         print("Correct!")
         return "r"
     print("The correct answer is:")
-    general_funktions.print_overline(answer)
+    general_functions.print_overline(answer)
     print("Was your answer correct? (y/n)")
     input_correct = input()
     if input_correct == "n":
@@ -53,7 +53,7 @@ def save_quizzed_data(set_list, set_name):
 
 def get_set_name():
     # Asks the user to choose a set, returns the set name (without ".csv")
-    existing_sets_list = general_funktions.get_existing_sets()
+    existing_sets_list = general_functions.get_existing_sets()
     print("Which set do you want to get quizzed on?")
     print("The following sets exist:")
     print(",\n".join(existing_sets_list))

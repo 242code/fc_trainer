@@ -2,9 +2,9 @@
 
 import datetime
 import random
-import fc_quiz
-import manage_quiz_date
-import general_funktions
+from modules import fc_quiz
+from modules import manage_quiz_date
+from modules import general_functions
 
 def date_str_to_datetime_obj(date_str):
     # Takes a date string (%d.%m.%Y) and returns a datetime objekt.
@@ -47,7 +47,7 @@ def check_if_set_has_due_fc(set_list, today_dto):
 def quiz_due():
     # Manages the whole due quiz.
     today_dto = datetime.datetime.today()
-    for set_name in general_funktions.get_existing_sets():
+    for set_name in general_functions.get_existing_sets():
         set_list = fc_quiz.get_set_list(set_name)
         print(f"Now quizzing all due flash cads in the set {set_name}.")
         while check_if_set_has_due_fc(set_list, today_dto):

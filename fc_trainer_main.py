@@ -1,19 +1,18 @@
-# This is the main menu for the flash card (fc) trainer, that
-# starts the other modules.
+"""This is the main menu for the flash card (fc) trainer, that
+starts the other modules."""
 
-import fc_creation
-import fc_quiz
-import fc_due_quiz
 import sys
-import os
+from modules import fc_quiz
+from modules import fc_due_quiz
+from modules import fc_creation
+
 
 def main_menu():
-    print(os.getcwd())
     print("Welcome user to felix' flash card trainer (ffct)")
     while True:
         print("What do you want to do?")
         print("""Type
-            creation  to create new flash cards,
+            create    to create new flash cards,
             due       to get quizzed on all due flash cards from all sets,
             set       to get quizzed on existing flash card sets or
             exit      to exit the flash card trainer.
@@ -28,5 +27,6 @@ def main_menu():
                 fc_quiz.quiz()
             case "exit":
                 sys.exit()
+
 
 main_menu()
