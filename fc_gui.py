@@ -6,7 +6,7 @@ from tkinter import *
 from tkinter import ttk
 from mudules import general_funktions
 
-SUB_MENUS = ["create", "quiz", "set quiz"]
+SUB_MENUS = ["create", "quiz", "set quiz"] #TODO: I will review this when it is finished.
 
 def create_set_buttons(frame, mode):
     """This creates a Button for every existing set. The mode parameter is used

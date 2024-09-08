@@ -7,7 +7,7 @@ from modules import general_functions
 def ask_question(question, set_name):
     # Takes the fist item of an fc list and asks the user.
     general_functions.print_overline(f"Q:    {question} ({set_name})")
-    return None
+    return None #TODO: if there is never a return value in a method, you dont need return None, just delete it
 
 def get_answer_from_user(answer):
     # Gets answer from the user and compares to given correct answer.
@@ -15,7 +15,7 @@ def get_answer_from_user(answer):
     # answer was correct. Else returns "f".
     print("A:")
     user_answer = general_functions.multiline_input()
-    if user_answer == answer:
+    if user_answer == answer: #TODO You should probably delete this statement if you have another correct check manually
         print("Correct!")
         return "r"
     print("The correct answer is:")
@@ -23,20 +23,20 @@ def get_answer_from_user(answer):
     print("Was your answer correct? (y/n)")
     input_correct = input()
     if input_correct == "n":
-        return "f"
+        return "f" #TODO: If you only have 2 return values it is better to use a bool, also if you insist on using letters you can jusk ask for those instead of y/n
     else:
         return "r"
 
 def quiz_single_fc(single_fc_list, set_name):
     # Quizzes a single fc and adjusts stage and next quiz date.
-    ask_question(single_fc_list[0], set_name)
-    right_wrong = get_answer_from_user(single_fc_list[1])
+    ask_question(single_fc_list[0], set_name) #TODO Reevaluate wether the complicated architecture with an single_fc_list as an array is necessary, also explain why you did it that way
+    right_wrong = get_answer_from_user(single_fc_list[1]) #TODO: right_wrong is a very confusing name, also you could make this a oneliner
     return right_wrong
 
 def get_set_list(set_name):
     # Takes the set name and opens the corresponding .csv file in
     # ./fc_sets in read mode.
-    set_file = open(f"./fc_sets/{set_name}.csv", "r")
+    set_file = open(f"./fc_sets/{set_name}.csv", "r") #TODO if you follow through with my suggestion to use yaml or json, you have to adjust here
     set_reader = csv.reader(set_file)
     set_list = list(set_reader)
     set_file.close()
@@ -44,7 +44,7 @@ def get_set_list(set_name):
 
 def save_quizzed_data(set_list, set_name):
     # Takes the quizzed list and saves it into the set .csv file.
-    set_file = open(f"./fc_sets/{set_name}.csv", "w")
+    set_file = open(f"./fc_sets/{set_name}.csv", "w") #TODO think about saving .csv somewhere else to make a switch to another format understandable
     writer = csv.writer(set_file)
     for single_fc_list in set_list:
         writer.writerow(single_fc_list)
@@ -56,7 +56,7 @@ def get_set_name():
     existing_sets_list = general_functions.get_existing_sets()
     print("Which set do you want to get quizzed on?")
     print("The following sets exist:")
-    print(",\n".join(existing_sets_list))
+    print(",\n".join(existing_sets_list)) ##TODO, you dont need three prints, you could just put it in one and concatenate the Strings
     set_to_quiz = input()
     while set_to_quiz not in existing_sets_list:
         set_to_quiz = input("Please enter an existing set name.\n")
@@ -81,4 +81,4 @@ def quiz():
         user_input = input()
         if user_input == "n":
             break
-    return None
+    return None #TODO: Return none is not needed

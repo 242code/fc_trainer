@@ -1,5 +1,4 @@
-"""This is the main menu for the flash card (fc) trainer, that
-starts the other modules."""
+"""This is the main menu for the flash card (fc) trainer, that starts the other modules."""  # TODO: There was no reason for a linebreak
 
 import sys
 from modules import fc_quiz
@@ -17,8 +16,7 @@ def main_menu():
             set       to get quizzed on existing flash card sets or
             exit      to exit the flash card trainer.
             """)
-        command = input()
-        match command:
+        match input():  # TODO: There was no need to save in a variable for a one time use
             case "create":
                 fc_creation.create_fcs()
             case "due":
